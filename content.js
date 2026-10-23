@@ -1,7 +1,7 @@
 (() => {
   if(window.__ttdAutofillAssistantLoaded)return;
   window.__ttdAutofillAssistantLoaded=true;
-  const EXT_VERSION="1.0.20";
+  const EXT_VERSION="1.0.21";
   let learnEvents=[],learning=false,learnStartedAt="";
   const norm=s=>(s||"").toLowerCase().replace(/[*:()[\]_-]/g," ").replace(/\s+/g," ").trim();
   function fieldText(el){
@@ -225,8 +225,9 @@
       // General values are filled only when that section exists. This prevents a
       // pilgrim-only page from receiving common values in similarly named fields.
       if(generalFields?.length){
-        for(const key of ["email","country","state","city","pincode","address"]){
-          const el=generalFields.find(e=>category(e)===key);
+        const generalNames={email:"emailId",city:"city",state:"state",country:"country",pincode:"pincode"};
+        for(const key of ["email","city","state","country","pincode"]){
+          const el=generalFields.find(e=>e.getAttribute("name")===generalNames[key])||generalFields.find(e=>category(e)===key);
           if(el&&await setValue(el,shared[key])){count++;generalCount++;}
         }
       }

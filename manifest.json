@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TTD Autofill Assistant",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "Fill TTD booking form fields from locally saved devotee details. Does not submit bookings or bypass CAPTCHA/OTP.",
   "permissions": ["storage", "activeTab", "scripting", "webNavigation", "debugger"],
   "host_permissions": ["https://ttdevasthanams.ap.gov.in/*", "https://*.ttdevasthanams.ap.gov.in/*"],
