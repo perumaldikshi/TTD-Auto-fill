@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TTD Autofill Assistant</title>
+<style>
+*{box-sizing:border-box}body{font:13px/1.45 Arial,sans-serif;width:390px;max-height:650px;overflow:auto;margin:0;padding:14px;color:#202124}
+h1{font-size:18px;margin:0 0 5px}h2{font-size:14px;margin:15px 0 6px}p{margin:5px 0 10px;color:#5f6368}
+label{display:block;font-weight:600;margin:7px 0 3px}input,select{width:100%;padding:8px;border:1px solid #dadce0;border-radius:6px;font:inherit;background:white}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.card{border:1px solid #dadce0;border-radius:9px;padding:10px;margin:9px 0;background:#fff}
+.cardhead{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:700}.actions{display:flex;gap:6px}.actions button{width:auto;margin:0;padding:6px 9px}
+button{cursor:pointer;border:0;border-radius:7px;padding:10px;font-weight:700;width:100%;margin-top:8px}
+.primary{background:#1769aa;color:white}.secondary{background:#eef3f8;color:#174ea6}.danger{background:#fce8e6;color:#b3261e}.muted{background:#f1f3f4;color:#3c4043}
+.note{background:#fff7e0;border-radius:7px;padding:9px;color:#654d00;margin-top:10px}.small{font-size:11px;color:#5f6368}#status{min-height:18px;margin-top:8px;color:#137333}.hidden{display:none!important}
+</style></head>
+<body>
+<h1>TTD Autofill Assistant</h1>
+<p>Save General Details once. Add each pilgrim separately, then edit or delete their details anytime.</p>
+
+<h2>General Details (common)</h2>
+<label for="email">Email Address</label><input id="email" type="email" placeholder="Email address">
+<div class="grid"><div><label for="country">Country</label><input id="country" value="India" placeholder="India"></div><div><label for="state">State</label><input id="state" placeholder="Andhra Pradesh"></div></div>
+<div class="grid"><div><label for="city">City</label><input id="city" placeholder="Tirupati"></div><div><label for="pincode">PIN Code</label><input id="pincode" inputmode="numeric" placeholder="PIN Code"></div></div>
+<label for="address">Address (if requested)</label><input id="address" placeholder="Address">
+
+<h2>Pilgrim Details (person-specific)</h2>
+<div id="pilgrimList"></div>
+<button id="addUser" class="secondary" type="button">＋ Add User</button>
+
+<div id="editor" class="card hidden">
+  <div class="cardhead"><span id="editorTitle">Add pilgrim</span><button id="cancelEdit" type="button" class="muted" style="width:auto;margin:0;padding:5px 8px">Cancel</button></div>
+  <label for="pName">Full Name</label><input id="pName" placeholder="Full name">
+  <div class="grid"><div><label for="pAge">Age</label><input id="pAge" inputmode="numeric" placeholder="Age"></div>
+  <div><label for="pGender">Gender</label><select id="pGender"><option value="">Select</option><option>Female</option><option>Male</option><option>Transgender</option></select></div></div>
+  <div class="grid"><div><label for="pIdType">Photo ID Proof</label><select id="pIdType"><option value="">Select</option><option>Aadhaar Card</option><option>Passport</option></select></div>
+  <div><label for="pIdNumber">Photo ID Number</label><input id="pIdNumber" placeholder="ID number"></div></div>
+  <button id="saveUser" class="primary" type="button">Save User</button>
+</div>
+
+<button id="saveAll" class="secondary">Save All Details on This Device</button>
+<button id="fill" class="primary">Fill Current TTD Page</button>
+<button id="learnStart" class="secondary">Start Learn Mode</button>
+<button id="learnReport" class="secondary">Download Learn Report</button>
+<button id="export" class="secondary">Export Backup JSON</button>
+<button id="import" class="secondary">Import Backup JSON</button>
+<input id="file" type="file" accept="application/json,.json" hidden>
+<button id="clear" class="danger">Clear Saved Details</button>
+<div id="status" role="status" aria-live="polite"></div>
+<div class="note"><strong>Safety:</strong> This extension fills form fields only. It does not submit bookings, solve CAPTCHA, handle OTP, automate payments, or bypass queues or booking limits.</div>
+<script src="popup.js"></script>
+</body></html>
